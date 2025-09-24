@@ -11,7 +11,7 @@ import com.klef.dev.entity.Shoe;
 import com.klef.dev.service.ShoeService;
 
 @RestController
-@RequestMapping("/shoeapi")
+@RequestMapping("/")
 @CrossOrigin(origins = "*")
 public class ShoeController {
 

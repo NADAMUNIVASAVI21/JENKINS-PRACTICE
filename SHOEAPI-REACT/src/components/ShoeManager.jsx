@@ -21,15 +21,13 @@ const ShoeManager = () => {
   const [message, setMessage] = useState('');
   const [editMode, setEditMode] = useState(false);
 
-  const baseUrl = `${config.url}/shoeapi`;
-
   useEffect(() => {
     fetchAllShoes();
   }, []);
 
   const fetchAllShoes = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/all`);
+      const res = await axios.get(`${config.url}/all`);
       setShoes(res.data);
     } catch (error) {
       setMessage('Failed to fetch shoes.');
@@ -53,7 +51,7 @@ const ShoeManager = () => {
   const addShoe = async () => {
     if (!validateForm()) return;
     try {
-      await axios.post(`${baseUrl}/add`, shoe);
+      await axios.post(`${config.url}/add`, shoe);
       setMessage('Shoe added successfully.');
       fetchAllShoes();
       resetForm();
@@ -65,7 +63,7 @@ const ShoeManager = () => {
   const updateShoe = async () => {
     if (!validateForm()) return;
     try {
-      await axios.put(`${baseUrl}/update`, shoe);
+      await axios.put(`${config.url}/update`, shoe);
       setMessage('Shoe updated successfully.');
       fetchAllShoes();
       resetForm();
@@ -76,7 +74,7 @@ const ShoeManager = () => {
 
   const deleteShoe = async (id) => {
     try {
-      const res = await axios.delete(`${baseUrl}/delete/${id}`);
+      const res = await axios.delete(`${config.url}/delete/${id}`);
       setMessage(res.data);
       fetchAllShoes();
     } catch (error) {
@@ -86,7 +84,7 @@ const ShoeManager = () => {
 
   const getShoeById = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/get/${idToFetch}`);
+      const res = await axios.get(`${config.url}/get/${idToFetch}`);
       setFetchedShoe(res.data);
       setMessage('');
     } catch (error) {
